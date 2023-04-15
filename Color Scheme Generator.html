@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Scheme Generator</title>
+    <style>
+        /* CSS for color scheme generator tool */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 28px;
+            color: #333333;
+        }
+        
+        .color-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .color-box div {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px;
+            border-radius: 5px;
+        }
+        
+        .color-box span {
+            font-size: 14px;
+            color: #666666;
+        }
+        
+        .btn-generate {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-generate:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Color Scheme Generator</h1>
+        <div class="color-box">
+            <div id="color1"></div>
+            <div id="color2"></div>
+            <div id="color3"></div>
+            <div id="color4"></div>
+            <div id="color5"></div>
+        </div>
+        <br>
+	<b><span id="colorCodes"></span><b>
+        <button class="btn-generate" onclick="generateColors()">Generate Colors</button>
+    </div>
+    
+    <script>
+        // JavaScript for color scheme generator tool
+        function generateColors() {
+            const colors = generateRandomColors(5);
+            
+            document.getElementById('color1').style.backgroundColor = colors[0];
+            document.getElementById('color2').style.backgroundColor = colors[1];
+            document.getElementById('color3').style.backgroundColor = colors[2];
+            document.getElementById('color4').style.backgroundColor = colors[3];
+            document.getElementById('color5').style.backgroundColor = colors[4];
+            
+            document.getElementById('colorCodes').innerText = `Color Codes: ${colors.join(', ')}`;
+        }
+        
+        function generateRandomColors(num) {
+            const colors = [];
+            for (let i = 0; i < num; i++) {
+                const color = getRandomColor();
+                colors.push(color);
+            }
+            return colors;
+        }
+        
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>
